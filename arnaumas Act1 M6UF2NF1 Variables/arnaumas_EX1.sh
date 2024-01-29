@@ -21,3 +21,9 @@ echo "El teu nom d'usuari és:" $USERNAME
 
 # Mostrem el directori actual de l'usuari
 echo "El teu directori actual és:" $PWD
+
+# Mostrem el tipus de terminal
+echo "El tipus de la teva terminal és:" $TERM
+
+# Mostrem el PID de la Shell actual
+echo "El PID de la teva shell actual és:" $$
