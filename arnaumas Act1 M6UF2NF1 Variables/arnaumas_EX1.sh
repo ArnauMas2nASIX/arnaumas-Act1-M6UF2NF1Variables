@@ -27,3 +27,6 @@ echo "El tipus de la teva terminal és:" $TERM
 
 # Mostrem el PID de la Shell actual
 echo "El PID de la teva shell actual és:" $$
+
+# Mostrem els arguments del shell
+echo "Els arguments del Shell són:" $@
