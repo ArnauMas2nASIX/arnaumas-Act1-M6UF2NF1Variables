@@ -9,7 +9,4 @@
 # Mostrem els arguments que hem demanat
 echo "Has introduït aquest número d'arguments:" $#
 echo "Aquests són els arguments que has introduït:"
-for argument in "$@"
-do
-	echo "- $argument"
-done
+echo $@
