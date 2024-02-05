@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # ENUNCIAT
+# ÚS DEL BUCLE FOR
 # Realitza un script que tregui els comentaris (aquells que comencen per # i arriben fins
 # al final de la línia) de l’arxiu. Un cop els comentaris ja estiguin eliminats, demana
 # si una paraula/frase existeix dins d’un arxiu. I un cop feta aquesta comprovació,
