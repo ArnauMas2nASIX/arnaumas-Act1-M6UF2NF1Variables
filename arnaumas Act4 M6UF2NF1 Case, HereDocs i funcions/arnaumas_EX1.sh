@@ -33,6 +33,7 @@ until [[ $emotions == "y" ]]
 do
 	echo ""
 	read -p "Vols continuar l'espiral d'emocions [y/n]?: " emotions
+ 	emotions=${emotions,,}
 	case $emotions in
 	"n")
 		echo "Anima't home!" ;;
