@@ -83,6 +83,9 @@ then
 				echo ""
 				sudo apt-get install -y sysbench &>/dev/null
 				echo "S'HA INSTAL·LAT/ACTUALITZAT sysbench"
+    				echo ""
+				sudo apt-get install -y netcat &>/dev/null
+				echo "S'HA INSTAL·LAT/ACTUALITZAT netcat"
 			END
 		else
 			echo "ERROR: No es pot accedir al servidor"
