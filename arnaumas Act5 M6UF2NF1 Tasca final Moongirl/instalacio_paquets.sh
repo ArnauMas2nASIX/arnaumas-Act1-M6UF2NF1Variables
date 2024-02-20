@@ -11,6 +11,7 @@ echo "-----------------"
 echo "nmap"
 echo "open-ssh server"
 echo "smartmontools"
+echo "sysbench"
 echo "-----------------"
 echo ""
 
@@ -79,6 +80,9 @@ then
 				echo ""
 				sudo apt-get install -y smartmontools &>/dev/null
 				echo "S'HA INSTAL·LAT/ACTUALITZAT smartmontools"
+				echo ""
+				sudo apt-get install -y sysbench &>/dev/null
+				echo "S'HA INSTAL·LAT/ACTUALITZAT sysbench"
 			END
 		else
 			echo "ERROR: No es pot accedir al servidor"
