@@ -10,6 +10,7 @@ echo "Aquest programa instal·larà/actualitzarà els següents programes al ser
 echo "-----------------"
 echo "nmap"
 echo "open-ssh server"
+echo "smartmontools"
 echo "-----------------"
 echo ""
 
@@ -63,7 +64,7 @@ then
 			# les executarem amb el sudo. Aquesta contrasenya se li demanarà al
 			# usuari. Per tant, si no la té o no és correcte, no es faran les comandes
 			# al servidor.
-			read -p "Entra la contrasenya de 'sudo' del servidor: " password
+			read -s -p "Entra la contrasenya de 'sudo' del servidor: " password
 			sleep 1
 			clear
 			ssh ${server_username}@${server_ip} <<- END
@@ -75,6 +76,9 @@ then
 				echo ""
 				sudo apt-get install -y open-ssh server &>/dev/null
 				echo "S'HA INSTAL·LAT/ACTUALITZAT open-ssh server"
+    				echo ""
+				sudo apt-get install -y smartmontools &>/dev/null
+				echo "S'HA INSTAL·LAT/ACTUALITZAT smartmontools"
 			END
 		else
 			echo "ERROR: No es pot accedir al servidor"
