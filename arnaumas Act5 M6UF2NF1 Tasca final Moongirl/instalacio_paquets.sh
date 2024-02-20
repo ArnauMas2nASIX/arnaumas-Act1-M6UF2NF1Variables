@@ -74,9 +74,9 @@ then
 				sudo apt-get install -y nmap &>/dev/null
 				echo "S'HA INSTAL·LAT/ACTUALITZAT nmap"
 				echo ""
-				sudo apt-get install -y open-ssh server &>/dev/null
+				sudo apt-get install -y openssh-server &>/dev/null
 				echo "S'HA INSTAL·LAT/ACTUALITZAT open-ssh server"
-    				echo ""
+				echo ""
 				sudo apt-get install -y smartmontools &>/dev/null
 				echo "S'HA INSTAL·LAT/ACTUALITZAT smartmontools"
 			END
