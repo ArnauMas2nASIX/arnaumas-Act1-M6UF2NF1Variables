@@ -11,6 +11,7 @@
 date=$(date '+%Y-%m-%d')
 hour=$(date '+%H:%M:%S')
 
+# Una funció informarà a l'usuari de totes les comprovacions que es faran sobre el servidor
 program_info() {
 	echo "<< INFORMACIÓ >>"
 	echo "Aquest programa executarà aquestes comprovacions:"
@@ -23,6 +24,9 @@ program_info() {
 	echo "- Estat de la memòria (sysbench)"
 }
 
+# Amb una altra funció, recollirem les dades que necessitem per connectar al servidor.
+# A més, farem una comprovació prèvia per veure si les proves es poden executar o no.
+# Si no es poden perquè no aconsegueix connectar-se, simplement acabarem el programa.
 get_server_info() {
 	read -p "Introdueix la IP del servidor: " server_ip
 	echo ""
@@ -42,12 +46,15 @@ get_server_info() {
 	clear
 }
 
+# Aquesta funció verifica la connexió a internet, fent un ping als DNS públics de google.
 check_internet() {
 	clear
 	echo "EXECUTANT PROVA DE PINGS..."
 	ssh ${server_username}@${server_ip} ping -c 4 8.8.8.8 > ~/server_${server_ip}_tests/executed_at_${date}_${hour}/internet_test_${date}_${hour}.txt
 }
 
+# Aquesta funció realitza una resolució directa i una d'inversa sobre el servidor, per veure
+# si respon a les peticions.
 check_dns() {
 	clear
 	echo "EXECUTANT PROVES DE DNS..."
@@ -55,6 +62,8 @@ check_dns() {
 	ssh ${server_username}@${server_ip} nslookup ${server_ip} > ~/server_${server_ip}_tests/executed_at_${date}_${hour}/dns_inverseresol_test_${date}_${hour}.txt
 }
 
+# Aquesta funció realitza dos escaneig de ports amb dos mètodes diferents. D'aquesta manera
+# es poden veure quins ports estan oberts i quins ports estan tancats.
 check_ports() {
 	clear
 	echo "EXECUTANT PROVES DE PORTS..."
@@ -64,6 +73,8 @@ check_ports() {
 	rm ports.txt
 }
 
+# Aquesta funció mostra, de dues maneres diferents, els diferents discs que hi ha al servidor
+# i els dispositius connectats, així com les particions existents i les dades de tot això.
 check_disks() {
 	clear
 	echo "EXECUTANT PROVES DE DISCOS..."
@@ -71,12 +82,14 @@ check_disks() {
 	ssh ${server_username}@${server_ip} df -h > ~/server_${server_ip}_tests/executed_at_${date}_${hour}/df_test_${date}_${hour}.txt
 }
 
+# Aquesta funció treu els paràmetres sobre la CPU amb el seu estat actual i els paràmetres.
 check_cpu() {
 	clear
 	echo "EXECUTANT PROVA DE CPU..."
 	ssh ${server_username}@${server_ip} sysbench cpu run > ~/server_${server_ip}_tests/executed_at_${date}_${hour}/cpu_test_${date}_${hour}.txt
 }
 
+# Aquesta funció fa el mateix que l'anterior però sobre la memòria RAM del servidor.
 check_memory() {
 	clear
 	echo "EXECUTANT PROVA DE MEMÒRIA..."
@@ -84,6 +97,9 @@ check_memory() {
 }
 
 # ---------------- CODI PRINCIPAL --------------
+# Avisem al usuari que per poder executar bé aquestes comprovacions es necessita anteriorment
+# haver utilitza l'script instalacio_paquets.sh perquè tingui totes les aplicacions
+# necessàries per a les proves.
 echo "<< ADVERTÈNCIA >>"
 echo "Abans de fer servir aquest script, has d'haver utilitzat l'script instalacio_paquets.sh"
 echo "Aquest programa fa servir comandes de paquets necessaris en aquell script"
@@ -115,11 +131,14 @@ then
 		then
 			mkdir ~/server_${server_ip}_tests
 		fi
+		# Crearem també una carpeta que agafi la data i hora actuals que hem
+		# recollit a dalt de tot i crei un directori amb això, on es guardaran
+		# totes les proves d'aquella execució.
 		if [[ ! -d ~/server_${server_ip}_tests/executed_at_${date}_${hour} ]]
 		then
 			mkdir ~/server_${server_ip}_tests/executed_at_${date}_${hour}
 		fi
-		# Executem les funcions de cada comprovació
+		# Executem les funcions de cada comprovació per ordre
 		check_internet
 		check_dns
 		check_ports
