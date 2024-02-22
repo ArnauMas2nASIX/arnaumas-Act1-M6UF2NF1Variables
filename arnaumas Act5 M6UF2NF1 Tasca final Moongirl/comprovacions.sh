@@ -28,8 +28,6 @@ get_server_info() {
 	echo ""
 	echo "ATENCIÓ: El següent paràmetre ha de coincidir amb el nom del fitxer de la clau privada"
 	read -p "Introdueix el nom d'usuari del servidor: " server_username
-	echo ""
-	read -s -p "Entra la contrasenya de 'sudo' del servidor: " password
 	sleep 1
 	clear
 	connect_success=false
