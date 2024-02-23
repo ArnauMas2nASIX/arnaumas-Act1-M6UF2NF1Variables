@@ -4,7 +4,9 @@ Cada script té una tasca diferent. Aquestes són les principals de cadascun:
 
 1- L'script "crear_copiar_claus_ssh.sh" fa, com indica el seu nom, la creació d'un conjunt de claus privada-pública. Després de crear-les, en fa una còpia al servidor que s'hagi
 donat en els inputs. Aquest procés és necessari per poder executar els altres scripts i és opcional (si ja es tenen les claus). De fet, en el mateix script, es comprova si les claus
-de l'usuari que ha cridat l'script ja existeixen i, si és el cas, acaba el programa sense fer-hi res. Fins i tot durant el programa tú mateix pots cancel·lar-ho abans de fer les claus.
+de l'usuari que ha cridat l'script ja existeixen si li donem a la opció de crear-les per no tornar-les a crear i després tenir errors. El programa també té una altra funció, que és copiar la clau
+dins el servidor remot, per després poder accedir a través de SSH sense necessitat de contrasenya i que tots els scripts s'executin correctament. Aquest pas és 100% necessari abans dels altres
+si no s'ha executat en cap moment anterior per aquell servidor.
 
 2- L'script "instalacio_paquets.sh" realitza la instal·lació de diversos programes que són necessaris per a les comprovacions posteriors. Si s'executa quan els programes ja estan instal·lats,
 simplement els actualitzarà. Cada vegada que s'executa, abans de res, realitza un "apt-get update" per assegurar que no hi ha problemes de paquets en cap moment.
@@ -13,3 +15,7 @@ simplement els actualitzarà. Cada vegada que s'executa, abans de res, realitza 
 guarda cada comanda de comprovacions en un arxiu diferent. Es crea també una carpeta on es guardaran totes les dades de les proves de totes les vegades que s'executi l'script i, de fet,
 cada vegada que s'executa l'script, agafa la data i hora del moment, de manera que crea un segon directori que conté tots els arxius d'aquella data i hora determinada. D'aquesta manera,
 si s'executa l'script en dos dies diferents, totes les dades quedaran guardades sense substituïr-ne d'anteriors.
+
+4- L'script "passar_a_html.sh"
+
+5- L'script "programar_guardat_logs.sh"
